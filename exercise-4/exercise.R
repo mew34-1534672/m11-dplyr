@@ -39,10 +39,13 @@ mean(to.seattle$gain, na.rm = TRUE) #average loss of 11.6991 minutes
 # Write a function that allows you to specify an origin, a destination, and a column of interest
 # that returns a data.frame of flights from the origin to the destination and only the column of interest
 ## Hint: see chapter 11 section on standard evaluation
-
+FlightInterest <- function(my.origin, my.dest, interest) {
+  statement <- flights %>% filter(origin == my.origin, dest == my.dest) %>% select_(interest)
+  return(statement)
+}
 
 # Retireve the air_time column for flights from JFK to SEA
-
+jfk.to.sea <- FlightInterest('JFK', 'SEA', 'air_time')
 
 # What was the average air time of those flights (in hours)?  
 mean(jfk.to.sea$air_time / 60, na.rm = TRUE) # average time of 5.489574 hours
